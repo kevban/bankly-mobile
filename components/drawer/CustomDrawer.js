@@ -9,12 +9,19 @@ import { Divider } from "react-native-paper";
 import { MaterialIcons } from '@expo/vector-icons';
 import { Text } from "react-native-paper";
 import { useNavigate } from "react-router-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
+import BanklyApi from "../../BanklyAPI";
+import { logOut } from "../../actionCreators";
 
 const CustomDrawer = props => {
     const user = useSelector(store => store.auth.user)
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const logout = () => {
+        dispatch(logOut())
+        navigate('/login');
+    }
     return (
         <View style={{ flex: 1 }}>
             <DrawerContentScrollView
@@ -37,7 +44,7 @@ const CustomDrawer = props => {
                             <Text style={{marginHorizontal: 30}}>Connect to Bank</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => console.log('bye')}>
+                    <TouchableOpacity onPress={logout}>
                         <View style={styles.drawerButtons}>
                             <MaterialIcons name='power-settings-new' color='red' size={24}></MaterialIcons>
                             <Text style={{marginHorizontal: 30}}>Log out</Text>

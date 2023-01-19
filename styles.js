@@ -49,6 +49,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         justifyContent: 'space-evenly'
     },
+    stackItem: {
+        marginVertical: 5,
+    },
     column: {
         display: 'flex',
         flexDirection: 'row',
@@ -56,7 +59,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     columnItem: {
-        marginHorizontal: 5
+        marginHorizontal: 5,
     },
     drawerHeader: {
         padding: 20
@@ -79,6 +82,16 @@ const styles = StyleSheet.create({
         marginHorizontal: 'auto',
         backgroundColor: 'white',
         padding: 20
+    },
+    FAB: {
+        position: 'absolute',
+        margin: 16,
+        right: 0,
+        bottom: 0,
+    },
+    fullWidth: {
+        width: '100%',
+        marginVertical: 5
     }
 })
 

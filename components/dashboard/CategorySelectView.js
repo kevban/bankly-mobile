@@ -23,15 +23,12 @@ const CategorySelectView = ({ categories, columns, handleSelect, dismiss, open }
             }}
         >
             <Text variant={'titleSmall'} style={{ textAlign: 'center' }}>Select Category</Text>
-            <View
-                onStartShouldSetResponder={true}
-            >
+            <View>
                 <FlatList
                     windowSize={10}
                     data={categories}
                     numColumns={columns}
                     renderItem={({ item }) => <View style={{ margin: 10 }}><CategoryIcon category={item} handleClick={() => {
-                        console.log(item)
                         select(item)
                     }
                     }></CategoryIcon>

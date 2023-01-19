@@ -9,6 +9,7 @@ import uuid from 'react-native-uuid'
 import styles from '../../../styles';
 import Transaction from '../../dashboard/Transaction';
 import Divider from '../../dashboard/Divider';
+import AddTransactionButton from '../../transaction/AddTransactionButton';
 
 
 function TransactionsList() {
@@ -34,17 +35,20 @@ function TransactionsList() {
 
 
     return (
-        <View style={styles.mainContainer}>
-            <ScrollView style={styles.transactionListPaper}>
-                {_.cloneDeep(user.transactions).sort(compareDate).map((row, idx) => (
-                    <React.Fragment key={uuid.v4()}>
-                        <Transaction transaction={row} />
-                        {(idx < (user.transactions.length - 1)) ? <Divider ></Divider> : null}
-                    </React.Fragment>
+        <>
+            <View style={styles.mainContainer}>
+                <ScrollView style={styles.transactionListPaper}>
+                    {_.cloneDeep(user.transactions).sort(compareDate).map((row, idx) => (
+                        <React.Fragment key={uuid.v4()}>
+                            <Transaction transaction={row} />
+                            {(idx < (user.transactions.length - 1)) ? <Divider ></Divider> : null}
+                        </React.Fragment>
+                    ))}
+                </ScrollView>
+            </View>
+            <AddTransactionButton></AddTransactionButton>
+        </>
 
-                ))}
-            </ScrollView>
-        </View>
     );
 }
 

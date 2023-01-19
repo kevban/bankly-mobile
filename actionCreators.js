@@ -8,7 +8,6 @@ function getTokenAction() {
     return async function (dispatch) {
         try {
             const data = await BanklyApi.createLinkToken()
-            console.log(data)
             dispatch({
                 type: 'SET_PUBLIC_TOKEN',
                 data
@@ -21,7 +20,6 @@ function getTokenAction() {
 
 // this action retrieve user info and store it in redux
 function storeUser(token) {
-    console.log(token)
     return async function (dispatch) {
         if (!token) {
             token = await AsyncStorage.getItem('token')

@@ -14,6 +14,7 @@ import TransactionsList from "./components/drawer/screens/TransactionList";
 import DrawerNavigator from "./components/drawer/DrawerNavigator";
 import PlaidView from "./components/plaid/PlaidView";
 import BanklyPlaidLink from "./components/plaid/BanklyPlaidLink";
+import AddTransactionPage from "./components/transaction/AddTransactionPage";
 
 const AppContent = () => {
     const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const AppContent = () => {
             <Route exact path='/transactions' element={<DrawerNavigator></DrawerNavigator>}></Route>
             <Route exact path='/connect' element={<PlaidView></PlaidView>}></Route>
             <Route exact path='/plaidlink' element={<BanklyPlaidLink></BanklyPlaidLink>}></Route>
+            <Route exact path='/add' element={<AddTransactionPage></AddTransactionPage>}></Route>
             <Route exact path='/' element={<Redirect></Redirect>}></Route>
         </Routes>
     </View>)

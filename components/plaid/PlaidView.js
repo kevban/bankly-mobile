@@ -13,25 +13,10 @@ const PlaidView = () => {
         }
     )
     useEffect(() => {
-        console.log('ran')
         generateToken()
     }, [generateToken])
     return (
-        // <Modal
-        //     visible={open}
-        //     onDismiss={dismiss}
-        //     contentContainerStyle={{
-        //         alignContent: 'center',
-        //         alignSelf: 'center',
-        //         backgroundColor: 'white',
-        //         padding: 20,
-        //         borderRadius: 10,
-        //         height: '50%'
-        //     }}
-        // >
             <PlaidPage></PlaidPage>
-        // </Modal>
-
     )
 
 

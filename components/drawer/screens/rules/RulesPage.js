@@ -25,21 +25,22 @@ const RulesPage = () => {
         setDescription(() => evt)
     }
     const handleCategoryClick = (category) => {
-        console.log(category)
         setCategory(category)
     }
     const handleSubmit = (evt) => {
         evt.preventDefault()
-        const newRule = { contains: description, bankly_category: category }
-        console.log("rules", newRule)
-        setDescription('')
-        setCategory({
-            iconId: 0,
-            name: 'Daily',
-            color: '#42a5f5'
-        })
-        dispatch(addRule(newRule))
+        if (description.length > 0) {
+            const newRule = { contains: description, bankly_category: category }
+            setDescription('')
+            setCategory({
+                iconId: 0,
+                name: 'Daily',
+                color: '#42a5f5'
+            })
+            dispatch(addRule(newRule))
+        }
         Keyboard.dismiss();
+
     }
     const handleDelete = (containsText) => {
         dispatch(deleteRule(containsText))
@@ -70,7 +71,6 @@ const RulesPage = () => {
                                 <View style={styles.column}>
                                     <View style={styles.columnItem}>
                                         <CategoryIcon category={category} handleClick={() => {
-                                            console.log('hi')
                                             setOpen(true)
                                         }}></CategoryIcon>
                                     </View>

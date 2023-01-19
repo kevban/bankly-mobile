@@ -30,7 +30,7 @@ function PlaidPage() {
                 <Text>
                     Let's connect to a bank!
                 </Text>
-                <ScrollView style={{width: '100%'}}>
+                <ScrollView style={styles.fullWidth}>
                     {user.banks.map(bank => {
                         return <BankListItem bank={bank} key={uuid.v4()}></BankListItem>
                     })}

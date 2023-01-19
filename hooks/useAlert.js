@@ -5,7 +5,7 @@ import styles from "../styles";
 const useAlert = () => {
     const [alert, setAlert] = useState(null);
     const createAlert = (msg, type) => {
-        console.log(msg)
+        console.log('alert:' , msg)
         setAlert(<Text style={styles.alertText}>{msg}</Text>)
     }
     return [alert, createAlert]
