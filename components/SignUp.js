@@ -3,13 +3,16 @@ import { Link as RouterLink, useNavigate } from 'react-router-native'
 import { useFormik } from 'formik'
 import { removeUser, storeUser } from '../actionCreators';
 import { useDispatch, useSelector } from 'react-redux';
+import { StatusBar } from 'react-native'
 import useAlert from '../hooks/useAlert';
 import BanklyApi from '../BanklyAPI';
 import LoadingPage from './LoadingPage';
 import * as Yup from 'yup'
 import styles from '../styles';
-import { View, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { Button, Card, TextInput, Avatar, Text } from 'react-native-paper';
+import { FontAwesome } from '@expo/vector-icons';
+import { View, TouchableWithoutFeedback, Keyboard, TouchableOpacity } from 'react-native';
+import { Button, Card, TextInput, Avatar, Text, Checkbox } from 'react-native-paper';
+import Popover from 'react-native-popover-view/dist/Popover';
 
 
 function SignUp({ setToken }) {
@@ -23,8 +26,10 @@ function SignUp({ setToken }) {
             await dispatch(removeUser())
             setToken(res.token)
             await dispatch(storeUser(res.token))
+            console.log('success')
             navigate('/connect')
         } catch (e) {
+            
             createAlert(e, 'error')
         }
     };
@@ -63,7 +68,8 @@ function SignUp({ setToken }) {
             password: '',
             firstName: '',
             lastName: '',
-            email: ''
+            email: '',
+            sandbox: false
         },
         onSubmit: handleSubmit,
         validationSchema: loginSchema
@@ -105,7 +111,7 @@ function SignUp({ setToken }) {
                         />
                         <View style={styles.column}>
                             <TextInput
-                                style={{ marginVertical: 6, marginHorizontal: 1, width: '50%'}}
+                                style={{ marginVertical: 6, marginHorizontal: 1, width: '50%' }}
                                 mode='outlined'
                                 name="firstName"
                                 value={formik.values.firstName}
@@ -117,7 +123,7 @@ function SignUp({ setToken }) {
                                 helperText={formik.touched.firstName && formik.errors.firstName}
                             />
                             <TextInput
-                                style={{ marginVertical: 6, marginHorizontal: 1, width: '50%'}}
+                                style={{ marginVertical: 6, marginHorizontal: 1, width: '50%' }}
                                 mode='outlined'
                                 id="lastName"
                                 label="Last Name"
@@ -151,6 +157,30 @@ function SignUp({ setToken }) {
                             error={formik.touched.password && Boolean(formik.errors.password)}
                             helperText={formik.touched.password && formik.errors.password}
                         />
+                        <View style={styles.column}>
+                            <Checkbox
+                                status={formik.values.sandbox ? 'checked' : 'unchecked'}
+                                onPress={
+                                    () => {
+                                        formik.setFieldValue('sandbox', !formik.values.sandbox)
+                                        console.log(formik.values.sandbox)
+                                    }
+                                }
+                            />
+                            <Text style={styles.columnItem}>Sandbox mode</Text>
+                            <Popover
+                                verticalOffset={-StatusBar.currentHeight}
+                                from={(sourceRef, showPopover) => (
+                                    <TouchableOpacity onLongPress={showPopover}>
+                                        <FontAwesome ref={sourceRef} name="question-circle" size={24} color="black" />
+                                    </TouchableOpacity>
+                                )
+                                }
+                            >
+                                <Text>In sandbox mode, you can try out the app with simulated transactions from banks without connecting to your real accounts!</Text>
+                            </Popover>
+
+                        </View>
                         <Button
                             mode='contained'
                             onPress={formik.handleSubmit}

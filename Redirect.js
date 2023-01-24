@@ -10,8 +10,9 @@ const Redirect = () => {
         if (user) {
             if (!user.token) {
                 navigate('/login')    
+            } else if (!user.user.connected) {
+                navigate('/connect')
             } else {
-                console.log('logged in')
                 navigate('/transactions')
             }
         }

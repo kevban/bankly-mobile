@@ -26,9 +26,9 @@ class BanklyApi {
         try {
             return (await axios({ url, method, data, params, headers })).data;
         } catch (err) {
-            console.error("API Error:", err);
-            // let message = err.response.data.error.message;
-            // throw Array.isArray(message) ? message : [message];
+            console.error("API Error:", err.response);
+            let message = err.response.data.error.message;
+            throw Array.isArray(message) ? message : [message];
         }
     }
 
@@ -47,7 +47,7 @@ class BanklyApi {
 
     // this gets user transaction from database.
     static async getTransactions() {
-        let res = await this.request(`plaid/transactions`)
+        await this.request(`plaid/transactions`)
         let userTransactions = await this.request(`user/transactions`)
         return userTransactions
     }

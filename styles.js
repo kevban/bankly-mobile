@@ -19,7 +19,8 @@ const styles = StyleSheet.create({
     },
     alertText: {
         width: '100%',
-        margin: '10px'
+        color: '#AE2509',
+        margin: 10
     },
     loginPaper: {
         marginTop: 8,

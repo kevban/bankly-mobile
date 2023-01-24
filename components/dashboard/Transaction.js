@@ -1,23 +1,34 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { View, Text } from 'react-native';
+import { Button, Modal } from 'react-native-paper';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-native';
+import { clearPlaidLink } from '../../actionCreators';
 import { formatNum } from '../../helpers/formatNum';
 import CategoryIcon from './CategoryIcon';
 
 const Transaction = ({ transaction }) => {
+    
+    
     return (
-        <View style={styles.transactionContainer}>
-            <View style={styles.leftContainer}>
-                <CategoryIcon category={transaction.bankly_category}></CategoryIcon>
-            </View>
-            <View style={styles.midContainer}>
-                <Text style={styles.description}>{transaction.name}</Text>
-                <Text style={styles.date}>{transaction.date}</Text>
+        <>
+            <View style={styles.transactionContainer}>
+                <View style={styles.leftContainer}>
+                    <CategoryIcon category={transaction.bankly_category}></CategoryIcon>
+                </View>
+                <View style={styles.midContainer}>
+                    <Text style={styles.description}>{transaction.name}</Text>
+                    <Text style={styles.date}>{transaction.date}</Text>
 
+                </View>
+                <View style={styles.rightContainer}>
+                    <Text style={styles.amount}>{formatNum(transaction.amount, true)}</Text>
+                </View>
             </View>
-            <View style={styles.rightContainer}>
-                <Text style={styles.amount}>{formatNum(transaction.amount, true)}</Text>
-            </View>
-        </View>
+            
+        </>
     );
 };
 

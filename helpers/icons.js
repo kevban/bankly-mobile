@@ -1,5 +1,5 @@
 import { MaterialIcons } from '@expo/vector-icons';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 const getIcon = (category) => {
     switch (category.iconId) {
         case 0: // daily
@@ -41,7 +41,9 @@ const getIcon = (category) => {
         case 18:
             return <MaterialIcons name="sports-esports" size={24} color="white" />
         case 19:
-            return <FontAwesome5 name="diamond" size={24} color="white" />
+            return <MaterialCommunityIcons name="diamond-stone" size={24} color="white" />
+        case 20:
+            return <MaterialIcons name="cancel" size={24} color="white" />
         case -1:
             return
         default:

@@ -27,7 +27,7 @@ function PlaidPage() {
                     color="white"
                     style={{ backgroundColor: 'purple' }}
                 />
-                <Text>
+                <Text style={{marginTop: 5}} variant="titleMedium">
                     Let's connect to a bank!
                 </Text>
                 <ScrollView style={styles.fullWidth}>

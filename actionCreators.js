@@ -2,7 +2,6 @@ import BanklyApi from './BanklyAPI';
 import moment from 'moment';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:3001";
 
 function getTokenAction() {
     return async function (dispatch) {
@@ -58,10 +57,17 @@ function updateTransactions() {
     return async function (dispatch) {
         const res = await BanklyApi.updateTransactions()
         const data = await BanklyApi.getTransactions()
-        dispatch({
-            type: 'UPDATE_TRANSACTION',
-            data
-        })
+        if (res.updateLink) {
+            dispatch({
+                type: 'UPDATE_LINK',
+                data: res.updateLink
+            })
+        } else {
+            dispatch({
+                type: 'UPDATE_TRANSACTION',
+                data
+            })
+        }
     }
 }
 
@@ -229,6 +235,15 @@ function deleteRule(contains) {
 }
 
 
+// this action removes the plaid update link token from redux store
+function clearPlaidLink() {
+    return function (dispatch) {
+        dispatch({
+            type: 'CLEAR_LINK'
+        })
+    }
+}
+
 export {
     getTokenAction,
     storeUser,
@@ -243,5 +258,6 @@ export {
     editTransction,
     deleteTransaction,
     addRule,
-    deleteRule
+    deleteRule,
+    clearPlaidLink
 }
