@@ -10,11 +10,11 @@ import SignIn from "./components/SignIn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import BanklyAppBar from "./components/BanklyAppBar";
 import SignUp from "./components/SignUp";
-import TransactionsList from "./components/drawer/screens/TransactionList";
+import TransactionsList from "./components/drawer/screens/transactions/TransactionList";
 import DrawerNavigator from "./components/drawer/DrawerNavigator";
 import PlaidView from "./components/plaid/PlaidView";
 import BanklyPlaidLink from "./components/plaid/BanklyPlaidLink";
-import AddTransactionPage from "./components/transaction/AddTransactionPage";
+import AddTransactionPage from "./components/drawer/screens/transactions/AddTransactionPage";
 
 const AppContent = () => {
     const dispatch = useDispatch();

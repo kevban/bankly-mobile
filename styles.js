@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
     },
     modal: {
         display: 'flex',
+        position: 'absolute',
         width: '80%',
         height: '60%',
         borderRadius: 20,

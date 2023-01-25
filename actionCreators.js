@@ -176,7 +176,7 @@ function addTransction(transaction) {
 }
 
 // this action edits a transaction
-function editTransction(transaction) {
+function editTransaction(transaction) {
     return async function (dispatch) {
         try {
             let res = await BanklyApi.editTransaction(transaction)
@@ -255,7 +255,7 @@ export {
     addTag,
     removeTag,
     addTransction,
-    editTransction,
+    editTransaction,
     deleteTransaction,
     addRule,
     deleteRule,

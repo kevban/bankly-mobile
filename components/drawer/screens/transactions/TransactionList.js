@@ -2,15 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { useNavigate } from 'react-router-native';
-import { clearPlaidLink, updateTransactions as updateTransactionsAction } from '../../../actionCreators';
+import { clearPlaidLink, updateTransactions as updateTransactionsAction } from '../../../../actionCreators';
 import _ from 'lodash';
 import { View, ScrollView } from 'react-native';
 import uuid from 'react-native-uuid'
-import styles from '../../../styles';
-import Transaction from '../../dashboard/Transaction';
-import Divider from '../../dashboard/Divider';
-import AddTransactionButton from '../../transaction/AddTransactionButton';
-import ReconnectModal from '../../dashboard/ReconnectModal';
+import styles from '../../../../styles';
+import Transaction from './Transaction';
+import Divider from '../../../dashboard/Divider';
+import AddTransactionButton from './AddTransactionButton';
+import ReconnectModal from '../../../dashboard/ReconnectModal';
+import AddTransactionPage from './AddTransactionPage';
 
 
 function TransactionsList() {
@@ -18,12 +19,20 @@ function TransactionsList() {
     const user = useSelector(store => store.auth.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [open, setOpen] = useState(false)
+    const [openReconnect, setReconnect] = useState(false)
+    const [openEdit, setEdit] = useState(false)
+    const [selectedTransaction, setSelectedTransaction] = useState(null)
 
-    const dismiss = () => {
+    const dismissReconnect = () => {
         dispatch(clearPlaidLink())
-        setOpen(false)
+        setReconnect(false)
     }
+
+    const editTransaction = (transaction) => {
+        setSelectedTransaction(transaction)
+        setEdit(true)
+    }
+
 
     function compareDate(a, b) {
         if (moment(a.date).isAfter(moment(b.date))) {
@@ -37,8 +46,7 @@ function TransactionsList() {
 
     useEffect(() => {
         if (updateLink) {
-            console.log('opened')
-            setOpen(true)
+            setReconnect(true)
         }
     }, [updateLink])
 
@@ -55,13 +63,14 @@ function TransactionsList() {
                 <ScrollView style={styles.transactionListPaper}>
                     {_.cloneDeep(user.transactions).sort(compareDate).map((row, idx) => (
                         <React.Fragment key={uuid.v4()}>
-                            <Transaction transaction={row} />
+                            <Transaction transaction={row} onPress={() => editTransaction(row)} />
                             {(idx < (user.transactions.length - 1)) ? <Divider ></Divider> : null}
                         </React.Fragment>
                     ))}
                 </ScrollView>
             </View>
-            <ReconnectModal open={open} dismiss={dismiss}></ReconnectModal>
+            <ReconnectModal open={openReconnect} dismiss={dismissReconnect}></ReconnectModal>
+            <AddTransactionPage open={openEdit} dismiss={() => setEdit(false)} transaction={selectedTransaction}></AddTransactionPage>
             <AddTransactionButton></AddTransactionButton>
         </>
 

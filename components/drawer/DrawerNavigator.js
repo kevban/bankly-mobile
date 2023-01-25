@@ -1,11 +1,11 @@
 import React from "react";
 import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
-import TransactionsList from "./screens/TransactionList";
+import TransactionsList from "./screens/transactions/TransactionList";
 import { MaterialIcons } from '@expo/vector-icons';
 import Dashboard from "./screens/stats/Dashboard";
 import RulesPage from "./screens/rules/RulesPage";
 import CustomDrawer from "./CustomDrawer";
-import AddTransactionButton from "../transaction/AddTransactionButton";
+import AddTransactionButton from "./screens/transactions/AddTransactionButton";
 import CategoriesPage from "./screens/categories/CategoriesPage";
 
 const Drawer = createDrawerNavigator();
