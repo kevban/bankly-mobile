@@ -21,8 +21,8 @@ Bank.ly is a personal finance management tool that helps users keep track of the
 ![screenshot](assets/screenshots/categories.png)
 
 ## Technology Used
-- React native
-- Plaid
+- React native, redux
+- Bank API: Plaid
 
 ## Other
 - This project was made for Springboard Capstone project 2
