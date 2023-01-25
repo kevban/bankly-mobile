@@ -1,7 +1,10 @@
 # Bank.ly Mobile
-A React native application for the personal finance budgeting app Bank.ly.
+A React native application for the personal finance budgeting app Bank.ly.  
 
 [Download .apk file here](https://drive.google.com/file/d/1dAhRUrTcO8ZXP2lOYeQpzj9CanEKtdVm/view?usp=sharing)
+
+#### [Bank.ly Web App](https://github.com/kevban/bankly-front)  
+#### [Bank.ly bank-end](https://github.com/kevban/bankly-backend)  
 
 ## What does Bank.ly do?
 
@@ -26,4 +29,6 @@ Bank.ly is a personal finance management tool that helps users keep track of the
 
 ## Other
 - This project was made for Springboard Capstone project 2
-- Also see: [Bank.ly bank-end](https://github.com/kevban/bankly-backend), [Bankly Web](https://github.com/kevban/bankly-front)
+- Also see: 
+    - [Bank.ly bank-end](https://github.com/kevban/bankly-backend)
+    - [Bankly Web](https://github.com/kevban/bankly-front)
