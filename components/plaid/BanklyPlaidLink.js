@@ -46,7 +46,7 @@ const BanklyPlaidLink = ({ updateLink }) => {
 
     return (
         <>
-            <View style={{height: 40}}></View>
+            {/* <View style={{height: 40}}></View> */}
             <PlaidLink
                 linkToken={linkToken.link_token}
                 onEvent={(event) => console.log('onEvent', event, linkToken)}
